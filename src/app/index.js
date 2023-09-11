@@ -3,10 +3,12 @@ const app = new koa();
 
 const userRouter = require("@/router/user.route");
 const {koaBody} = require("koa-body");
-
+const errHandle = require("./errHandle");
 // 中间件
 // 解析body数据 重写 中间件
 app.use(koaBody());
 app.use(userRouter.routes());
 
+// 统一错误处理
+app.on("error", errHandle);
 module.exports = app;
