@@ -1,6 +1,12 @@
 const path = require("path");
 const fs = require("fs");
-const {fileUploadError, fileFormatError} = require("@/constant/err.type");
+const {
+    fileUploadError,
+    fileFormatError,
+    releaseGoodsError,
+} = require("@/constant/err.type");
+
+const {createGoods} = require("@/service/goods.service");
 class GoodsController {
     async upload(ctx, next) {
         const {file} = ctx.request.files;
@@ -25,6 +31,25 @@ class GoodsController {
         } else {
             console.error("文件上传失败");
             return ctx.app.emit("error", fileUploadError, ctx);
+        }
+    }
+
+    // 发布商品
+    async releaseGoods(ctx) {
+        try {
+            const res = await createGoods(ctx.request.body);
+            if (res) {
+                ctx.body = {
+                    code: 0,
+                    message: "发布商品成功",
+                    result: "",
+                };
+            } else {
+                return ctx.app.emit("error", releaseGoodsError, ctx);
+            }
+        } catch (error) {
+            console.error(error);
+            return ctx.app.emit("error", releaseGoodsError, ctx);
         }
     }
 }

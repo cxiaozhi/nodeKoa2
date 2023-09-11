@@ -54,4 +54,14 @@ module.exports = {
         message: "文件格式错误,请上传image/jpeg,image/png格式图片",
         result: "",
     },
+    goodsFormatError: {
+        code: "10203",
+        message: "商品参数格式错误",
+        result: "",
+    },
+    releaseGoodsError: {
+        code: "10204",
+        message: "商品发布失败",
+        result: "",
+    },
 };

@@ -3,6 +3,7 @@ const path = require("path");
 const koa = require("koa");
 const app = new koa();
 const koaStatic = require("koa-static");
+const parameter = require("koa-parameter");
 
 const router = require("@/router/index");
 const {koaBody} = require("koa-body");
@@ -20,8 +21,11 @@ app.use(
 );
 
 app.use(koaStatic(path.join(process.cwd(), "/src/upload")));
+
+app.use(parameter(app));
 app.use(router.routes());
 app.use(router.allowedMethods());
+
 // 统一错误处理
 app.on("error", errHandle);
 module.exports = app;
