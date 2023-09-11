@@ -1,5 +1,9 @@
-const {createUser, getUserInfo} = require("@/service/user.service");
-const {userRegistorError, userLoginError} = require("@/constant/err.type");
+const {createUser, getUserInfo, updateById} = require("@/service/user.service");
+const {
+    userRegistorError,
+    userLoginError,
+    updatePasswordError,
+} = require("@/constant/err.type");
 const jwt = require("jsonwebtoken");
 const {JWT_SECRET} = require("@/config/config.default");
 class UserController {
@@ -9,7 +13,7 @@ class UserController {
         try {
             const res = await createUser(user_name, password);
             ctx.body = {
-                code: 200,
+                code: 0,
                 message: "用户注册成功",
                 result: {
                     id: res.id,
@@ -40,6 +44,24 @@ class UserController {
         } catch (error) {
             console.error(error);
             ctx.app.emit("error", userLoginError, ctx);
+        }
+    }
+    // 修改密码
+    async chagePassword(ctx, next) {
+        // 获取数据
+        const id = ctx.state.user.id;
+        const password = ctx.request.body.password;
+        // 操作数据库
+        const res = await updateById({id, password});
+        // 返回结果
+        if (res) {
+            ctx.body = {
+                code: 0,
+                message: "修改密码成功",
+                result: "",
+            };
+        } else {
+            ctx.app.emit("error", updatePasswordError, ctx);
         }
     }
 }

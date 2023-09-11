@@ -34,4 +34,9 @@ module.exports = {
         message: "错误token",
         result: "",
     },
+    updatePasswordError: {
+        code: "10007",
+        message: "修改密码失败",
+        result: "",
+    },
 };
