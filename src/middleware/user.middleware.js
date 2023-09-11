@@ -29,6 +29,7 @@ const verifyUser = async function (ctx, next) {
     } catch (error) {
         console.error(error);
         ctx.app.emit("error", userRegistorError, ctx);
+        return;
     }
     await next();
 };
