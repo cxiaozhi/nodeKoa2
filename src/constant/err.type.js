@@ -39,4 +39,9 @@ module.exports = {
         message: "修改密码失败",
         result: "",
     },
+    hadAdminPermissionError: {
+        code: "10103",
+        message: "没有管理员权限",
+        result: "",
+    },
 };

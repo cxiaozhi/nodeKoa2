@@ -19,4 +19,5 @@ router.post("/register", userValidator, verifyUser, cryptPassword, register);
 router.post("/login", userValidator, verifyLogin, login);
 // 修改密码
 router.patch("/", auth, cryptPassword, chagePassword);
+
 module.exports = router;
