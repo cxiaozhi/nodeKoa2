@@ -5,7 +5,7 @@ const {tokenError, hadAdminPermissionError} = require("@/constant/err.type");
 // 是否登录
 const auth = async function (ctx, next) {
     try {
-        const {authorization} = ctx.request.header;
+        const {authorization = ""} = ctx.request.header;
         const token = authorization.replace("Bearer ", "");
         const user = jwt.verify(token, JWT_SECRET);
         ctx.state.user = user;

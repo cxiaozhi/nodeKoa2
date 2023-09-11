@@ -44,4 +44,9 @@ module.exports = {
         message: "没有管理员权限",
         result: "",
     },
+    fileUploadError: {
+        code: "10201",
+        message: "文件上传失败",
+        result: "",
+    },
 };
