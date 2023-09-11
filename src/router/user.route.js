@@ -7,12 +7,14 @@ const {
     cryptPassword,
     verifyLogin,
 } = require("@/middleware/user.middleware");
+const {auth} = require("@/middleware/auth.middleware");
 
-/**
- * GET /user/
- * 注册
- */
+// 注册
 router.post("/register", userValidator, verifyUser, cryptPassword, register);
+// 登录
 router.post("/login", userValidator, verifyLogin, login);
-
+// 修改密码
+router.patch("/", auth, (ctx, next) => {
+    ctx.body = "修改成功";
+});
 module.exports = router;

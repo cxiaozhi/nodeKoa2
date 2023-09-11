@@ -29,4 +29,9 @@ module.exports = {
         message: "用户密码错误",
         result: "",
     },
+    tokenError: {
+        code: "10101",
+        message: "错误token",
+        result: "",
+    },
 };
