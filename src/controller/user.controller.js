@@ -1,4 +1,4 @@
-const {createUser} = require("../service/user.service");
+const {createUser} = require("@/service/user.service");
 
 class UserController {
     // 注册
