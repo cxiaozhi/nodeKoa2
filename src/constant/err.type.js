@@ -49,4 +49,9 @@ module.exports = {
         message: "文件上传失败",
         result: "",
     },
+    fileFormatError: {
+        code: "10202",
+        message: "文件格式错误,请上传image/jpeg,image/png格式图片",
+        result: "",
+    },
 };
