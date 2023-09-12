@@ -64,4 +64,9 @@ module.exports = {
         message: "商品发布失败",
         result: "",
     },
+    updateGoodsError: {
+        code: "10205",
+        message: "修改商品失败",
+        result: "",
+    },
 };

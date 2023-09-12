@@ -4,9 +4,10 @@ const {
     fileUploadError,
     fileFormatError,
     releaseGoodsError,
+    updateGoodsError,
 } = require("@/constant/err.type");
 
-const {createGoods} = require("@/service/goods.service");
+const {createGoods, updateGoodsService} = require("@/service/goods.service");
 class GoodsController {
     async upload(ctx, next) {
         const {file} = ctx.request.files;
@@ -50,6 +51,29 @@ class GoodsController {
         } catch (error) {
             console.error(error);
             return ctx.app.emit("error", releaseGoodsError, ctx);
+        }
+    }
+
+    // 修改商品
+    async updateGoods(ctx) {
+        try {
+            const res = await updateGoodsService(
+                ctx.params.id,
+                ctx.request.body
+            );
+            if (res) {
+                ctx.body = {
+                    code: 0,
+                    message: "修改商品成功",
+                    result: "",
+                };
+            } else {
+                console.error("修改商品失败");
+                return ctx.app.emit("error", updateGoodsError, ctx);
+            }
+        } catch (error) {
+            console.error(error);
+            return ctx.app.emit("error", updateGoodsError, ctx);
         }
     }
 }
