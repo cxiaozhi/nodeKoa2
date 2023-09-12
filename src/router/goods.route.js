@@ -6,12 +6,15 @@ const {
     upload,
     releaseGoods,
     updateGoods,
+    removeGoods,
+    offGoods,
+    restoreGoods,
 } = require("@/controller/goods.controller");
 
 const {auth, hadAdminPermission} = require("@/middleware/auth.middleware");
 
 const {validator} = require("@/middleware/goods.middleware");
-const {CITEXT} = require("sequelize");
+
 // 上传图片
 router.post("/upload", auth, hadAdminPermission, upload);
 
@@ -20,5 +23,14 @@ router.post("/", auth, hadAdminPermission, validator, releaseGoods);
 
 // 修改商品
 router.put("/:id", auth, hadAdminPermission, validator, updateGoods);
+
+// 删除商品
+router.delete("/:id", auth, hadAdminPermission, removeGoods);
+
+// 下架商品
+router.post("/:id/off", auth, hadAdminPermission, offGoods);
+
+// 上架商品
+router.post("/:id/on", auth, hadAdminPermission, restoreGoods);
 
 module.exports = router;

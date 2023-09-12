@@ -71,7 +71,22 @@ module.exports = {
     },
     goodsIdError: {
         code: "10206",
-        message: "商品ID不存在",
+        message: "无效的商品ID",
+        result: "",
+    },
+    deleteGoodsError: {
+        code: "10207",
+        message: "删除商品失败",
+        result: "",
+    },
+    offGoodsError: {
+        code: "10208",
+        message: "下架商品失败",
+        result: "",
+    },
+    onGoodsError: {
+        code: "10209",
+        message: "上架商品失败",
         result: "",
     },
 };

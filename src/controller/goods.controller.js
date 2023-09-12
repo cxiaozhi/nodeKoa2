@@ -6,9 +6,18 @@ const {
     releaseGoodsError,
     updateGoodsError,
     goodsIdError,
+    deleteGoodsError,
+    offGoodsError,
+    onGoodsError,
 } = require("@/constant/err.type");
 
-const {createGoods, updateGoodsService} = require("@/service/goods.service");
+const {
+    createGoods,
+    updateGoodsService,
+    removeGoodsService,
+    offGoodsService,
+    onGoodsService,
+} = require("@/service/goods.service");
 class GoodsController {
     async upload(ctx, next) {
         const {file} = ctx.request.files;
@@ -78,6 +87,66 @@ class GoodsController {
         } catch (error) {
             console.error(error);
             return ctx.app.emit("error", updateGoodsError, ctx);
+        }
+    }
+
+    // 删除商品
+    async removeGoods(ctx) {
+        try {
+            const res = await removeGoodsService(ctx.params.id);
+            if (res) {
+                ctx.body = {
+                    code: 0,
+                    message: "删除商品成功",
+                    result: "",
+                };
+            } else {
+                console.error("商品id不存在");
+                return ctx.app.emit("error", goodsIdError, ctx);
+            }
+        } catch (error) {
+            console.error("删除商品失败");
+            return ctx.app.emit("error", deleteGoodsError, ctx);
+        }
+    }
+
+    // 下架商品
+    async offGoods(ctx) {
+        try {
+            const res = await offGoodsService(ctx.params.id);
+            if (res) {
+                ctx.body = {
+                    code: 0,
+                    message: "下架商品成功",
+                    result: "",
+                };
+            } else {
+                console.error("商品id不存在");
+                return ctx.app.emit("error", goodsIdError, ctx);
+            }
+        } catch (error) {
+            console.error(error);
+            return ctx.app.emit("error", offGoodsError, ctx);
+        }
+    }
+
+    // 上架商品
+    async restoreGoods(ctx) {
+        try {
+            const res = await onGoodsService(ctx.params.id);
+            if (res) {
+                ctx.body = {
+                    code: 0,
+                    message: "上架商品成功",
+                    result: "",
+                };
+            } else {
+                console.error("商品id不存在");
+                return ctx.app.emit("error", goodsIdError, ctx);
+            }
+        } catch (error) {
+            console.error(error);
+            return ctx.app.emit("error", onGoodsError, ctx);
         }
     }
 }
