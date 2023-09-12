@@ -99,4 +99,14 @@ module.exports = {
         message: "获取购物车列表失败",
         result: "",
     },
+    cartFormatError: {
+        code: "10302",
+        message: "购物车数据格式错误",
+        result: "",
+    },
+    deleteCartError: {
+        code: "10303",
+        message: "删除购物车失败",
+        result: "",
+    },
 };

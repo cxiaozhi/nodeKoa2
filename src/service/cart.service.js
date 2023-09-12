@@ -46,6 +46,33 @@ class CartService {
             list: rows,
         };
     }
+
+    async updateCartService(params) {
+        const {id, number, selected} = params;
+        const res = await Cart.findByPk(id);
+        if (!res) return "";
+        number !== undefined ? (res.number = number) : "";
+        if (selected !== undefined) {
+            res.selected = selected;
+        }
+        return await res.save();
+    }
+
+    async removeCartService(ids) {
+        const res = await Cart.destroy({
+            where: {
+                id: {
+                    [Op.in]: ids,
+                },
+            },
+        });
+
+        if (res) {
+            return res;
+        } else {
+            return false;
+        }
+    }
 }
 
 module.exports = new CartService();
