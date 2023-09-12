@@ -89,4 +89,9 @@ module.exports = {
         message: "上架商品失败",
         result: "",
     },
+    getGoodsError: {
+        code: "10210",
+        message: "获取商品列表失败",
+        result: "",
+    },
 };

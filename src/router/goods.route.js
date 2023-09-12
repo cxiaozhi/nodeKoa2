@@ -9,6 +9,7 @@ const {
     removeGoods,
     offGoods,
     restoreGoods,
+    findAllGoods,
 } = require("@/controller/goods.controller");
 
 const {auth, hadAdminPermission} = require("@/middleware/auth.middleware");
@@ -32,5 +33,8 @@ router.post("/:id/off", auth, hadAdminPermission, offGoods);
 
 // 上架商品
 router.post("/:id/on", auth, hadAdminPermission, restoreGoods);
+
+// 获取商品列表
+router.get("/", findAllGoods);
 
 module.exports = router;

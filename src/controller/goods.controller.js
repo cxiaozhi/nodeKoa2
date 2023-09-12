@@ -9,6 +9,7 @@ const {
     deleteGoodsError,
     offGoodsError,
     onGoodsError,
+    getGoodsError,
 } = require("@/constant/err.type");
 
 const {
@@ -17,6 +18,7 @@ const {
     removeGoodsService,
     offGoodsService,
     onGoodsService,
+    findGoodsService,
 } = require("@/service/goods.service");
 class GoodsController {
     async upload(ctx, next) {
@@ -147,6 +149,27 @@ class GoodsController {
         } catch (error) {
             console.error(error);
             return ctx.app.emit("error", onGoodsError, ctx);
+        }
+    }
+
+    // 获取商品数据
+    async findAllGoods(ctx) {
+        try {
+            const {pageNum, pageSize} = ctx.request.query;
+            const data = await findGoodsService(pageNum, pageSize);
+            if (data) {
+                ctx.body = {
+                    code: 0,
+                    message: "获取商品成功",
+                    result: data,
+                };
+            } else {
+                console.error("获取商品列表失败");
+                return ctx.app.emit("error", getGoodsError, ctx);
+            }
+        } catch (error) {
+            console.error(error);
+            return ctx.app.emit("error", getGoodsError, ctx);
         }
     }
 }

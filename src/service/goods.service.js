@@ -25,6 +25,17 @@ class GoodsService {
         const res = await Goods.restore({where: {id}});
         return res > 0 ? true : false;
     }
+
+    async findGoodsService(pageNum, pageSize) {
+        // 获取总数
+        const total = await Goods.count();
+        const res = await Goods.findAll({
+            offset: (pageNum - 1) * pageSize,
+            limit: +pageSize,
+        });
+        // 获取分页数据
+        return {pageNum, pageSize, total, goods_list: res};
+    }
 }
 
 module.exports = new GoodsService();
