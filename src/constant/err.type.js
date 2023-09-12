@@ -69,4 +69,9 @@ module.exports = {
         message: "修改商品失败",
         result: "",
     },
+    goodsIdError: {
+        code: "10206",
+        message: "商品ID不存在",
+        result: "",
+    },
 };

@@ -5,6 +5,7 @@ const {
     fileFormatError,
     releaseGoodsError,
     updateGoodsError,
+    goodsIdError,
 } = require("@/constant/err.type");
 
 const {createGoods, updateGoodsService} = require("@/service/goods.service");
@@ -68,8 +69,11 @@ class GoodsController {
                     result: "",
                 };
             } else {
-                console.error("修改商品失败");
-                return ctx.app.emit("error", updateGoodsError, ctx);
+                console.error("修改商品失败", {
+                    id: ctx.params.id,
+                    goods: ctx.request.body,
+                });
+                return ctx.app.emit("error", goodsIdError, ctx);
             }
         } catch (error) {
             console.error(error);
