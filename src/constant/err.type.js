@@ -94,4 +94,9 @@ module.exports = {
         message: "获取商品列表失败",
         result: "",
     },
+    getCartListError: {
+        code: "10301",
+        message: "获取购物车列表失败",
+        result: "",
+    },
 };
