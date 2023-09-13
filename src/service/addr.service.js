@@ -10,6 +10,13 @@ class AddrService {
             return "添加失败";
         }
     }
+
+    async findAllAddr(user_id) {
+        return await Addr.findAll({
+            where: {user_id},
+            attributes: ["id", "consignee", "phone", "address", "is_default"],
+        });
+    }
 }
 
 module.exports = new AddrService();

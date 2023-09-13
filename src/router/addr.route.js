@@ -2,7 +2,7 @@ const Router = require("koa-router");
 
 const {auth} = require("@/middleware/auth.middleware");
 const {validator} = require("@/middleware/addr.middleware");
-const {addAddress} = require("@/controller/addr.controller");
+const {addAddress, getAddress} = require("@/controller/addr.controller");
 
 const router = new Router({prefix: "/address"});
 // 添加地址
@@ -19,4 +19,7 @@ router.post(
     }),
     addAddress
 );
+
+// 获取地址
+router.get("/", auth, getAddress);
 module.exports = router;
