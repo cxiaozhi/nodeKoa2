@@ -17,6 +17,10 @@ class AddrService {
             attributes: ["id", "consignee", "phone", "address", "is_default"],
         });
     }
+
+    async updateAddr(id, addrObj) {
+        return await Addr.update(addrObj, {where: {id}});
+    }
 }
 
 module.exports = new AddrService();
