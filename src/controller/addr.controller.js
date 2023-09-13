@@ -1,6 +1,15 @@
+const {createAddr} = require("@/service/addr.service");
+
 class AddAddress {
     async addAddress(ctx) {
-        ctx.body = ctx.state.user.id;
+        const {consignee, phone, address} = ctx.request.body;
+        const user_id = ctx.state.user.id;
+        const res = await createAddr({consignee, phone, address, user_id});
+        ctx.body = {
+            code: 0,
+            message: "添加地址成功",
+            result: res,
+        };
     }
 }
 
