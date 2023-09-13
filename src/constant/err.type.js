@@ -119,4 +119,9 @@ module.exports = {
         message: "设置默认地址失败",
         result: "",
     },
+    addOrderError: {
+        code: "10501",
+        message: "提交订单失败",
+        result: "",
+    },
 };

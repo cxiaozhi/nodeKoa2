@@ -1,9 +1,0 @@
-@Content-Type = application/json
-
-### 测试取消订单接口
-POST http://localhost:8000/users/register
-Content-Type: {{Content-Type}}
-
-{
-    "user_name":"李雷",
-}
