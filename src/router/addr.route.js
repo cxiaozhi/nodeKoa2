@@ -6,6 +6,7 @@ const {
     addAddress,
     getAddress,
     updateAddress,
+    removeAddr,
 } = require("@/controller/addr.controller");
 
 const router = new Router({prefix: "/address"});
@@ -41,4 +42,8 @@ router.put(
     }),
     updateAddress
 );
+
+// 删除地址
+router.delete("/:id", auth, removeAddr);
+
 module.exports = router;

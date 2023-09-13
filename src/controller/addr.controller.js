@@ -1,4 +1,9 @@
-const {createAddr, findAllAddr, updateAddr} = require("@/service/addr.service");
+const {
+    createAddr,
+    findAllAddr,
+    updateAddr,
+    removeAddrService,
+} = require("@/service/addr.service");
 
 class AddAddress {
     async addAddress(ctx) {
@@ -25,10 +30,18 @@ class AddAddress {
     async updateAddress(ctx) {
         const addr_id = ctx.request.params.id;
         const res = await updateAddr(addr_id, ctx.request.body);
-        console.log(addr_id);
         ctx.body = {
             code: 0,
             message: "修改地址成功",
+            result: res,
+        };
+    }
+    async removeAddr(ctx) {
+        const addr_id = ctx.request.params.id;
+        const res = await removeAddrService(addr_id);
+        ctx.body = {
+            code: 0,
+            message: "删除地址成功",
             result: res,
         };
     }
