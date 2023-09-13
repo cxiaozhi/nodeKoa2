@@ -1,5 +1,8 @@
-const {createOrderService} = require("@/service/order.service");
-const {addOrderError} = require("@/constant/err.type");
+const {
+    createOrderService,
+    findAllOrderService,
+} = require("@/service/order.service");
+const {addOrderError, getOrderError} = require("@/constant/err.type");
 
 class OrderController {
     async createOrder(ctx) {
@@ -18,6 +21,20 @@ class OrderController {
             message: "创建订单成功",
             result: data,
         };
+    }
+
+    async getOrderList(ctx) {
+        const {pageNum = 1, pageSize = 10, status = 0} = ctx.request.query;
+        const res = await findAllOrderService({pageNum, pageSize, status});
+        if (res) {
+            ctx.body = {
+                code: 0,
+                message: "获取订单成功",
+                result: res,
+            };
+        } else {
+            ctx.app.emit("error", getOrderError, ctx);
+        }
     }
 }
 

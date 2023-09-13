@@ -1,4 +1,5 @@
 @Content-Type = application/json
+@Authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJfbmFtZSI6IuWwj-W8oCIsImlzX2FkbWluIjpmYWxzZSwiaWF0IjoxNjk0NTgyNTgzLCJleHAiOjE2OTQ2Njg5ODN9.zTQMKb5mZntVo1eMcqCKT-DM1rC1oypFDZHqzz8OcqU
 
 ### 测试取消订单接口
 POST http://localhost:8000/users/register
@@ -12,7 +13,18 @@ Content-Type: {{Content-Type}}
 ### 测试提交订单接口
 POST http://localhost:8000/orders
 Content-Type: {{Content-Type}}
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJfbmFtZSI6IuWwj-W8oCIsImlzX2FkbWluIjpmYWxzZSwiaWF0IjoxNjk0NTgyNTgzLCJleHAiOjE2OTQ2Njg5ODN9.zTQMKb5mZntVo1eMcqCKT-DM1rC1oypFDZHqzz8OcqU
+Authorization: {{Authorization}}
+
+{
+    "address_id":1,
+    "goods_info":"[{},{}]",
+    "total":"111.00"
+}
+
+### 测试获取订单列表接口
+POST http://localhost:8000/orders
+Content-Type: {{Content-Type}}
+Authorization: {{Authorization}}
 
 {
     "address_id":1,

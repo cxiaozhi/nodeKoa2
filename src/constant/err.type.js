@@ -124,4 +124,9 @@ module.exports = {
         message: "提交订单失败",
         result: "",
     },
+    getOrderError: {
+        code: "10502",
+        message: "查询错误",
+        result: "",
+    },
 };

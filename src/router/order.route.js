@@ -5,7 +5,8 @@ const router = new Router({prefix: "/orders"});
 const {auth} = require("@/middleware/auth.middleware");
 const {validator} = require("@/middleware/order.middleware");
 
-const {createOrder} = require("@/controller/order.controller");
+const {createOrder, getOrderList} = require("@/controller/order.controller");
+
 // 提交订单
 router.post(
     "/",
@@ -14,4 +15,6 @@ router.post(
     createOrder
 );
 
+// 获取订单列表
+router.get("/", auth, getOrderList);
 module.exports = router;
