@@ -114,4 +114,9 @@ module.exports = {
         message: "添加地址数据格式错误",
         result: "",
     },
+    setAddrError: {
+        code: "10402",
+        message: "设置默认地址失败",
+        result: "",
+    },
 };

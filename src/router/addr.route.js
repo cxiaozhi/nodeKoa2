@@ -7,6 +7,7 @@ const {
     getAddress,
     updateAddress,
     removeAddr,
+    setDefaultAddr,
 } = require("@/controller/addr.controller");
 
 const router = new Router({prefix: "/address"});
@@ -45,5 +46,8 @@ router.put(
 
 // 删除地址
 router.delete("/:id", auth, removeAddr);
+
+// 设置默认
+router.patch("/:id", auth, setDefaultAddr);
 
 module.exports = router;

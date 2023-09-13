@@ -25,6 +25,12 @@ class AddrService {
     async removeAddrService(id) {
         return await Addr.destroy({where: {id}});
     }
+
+    async setAddrService(id, user_id) {
+        await Addr.update({is_default: false}, {where: {user_id}});
+        const res = await Addr.update({is_default: true}, {where: {id}});
+        return res[0] > 0 ? true : false;
+    }
 }
 
 module.exports = new AddrService();

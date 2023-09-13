@@ -3,7 +3,9 @@ const {
     findAllAddr,
     updateAddr,
     removeAddrService,
+    setAddrService,
 } = require("@/service/addr.service");
+const {setAddrError} = require("@/constant/err.type");
 
 class AddAddress {
     async addAddress(ctx) {
@@ -44,6 +46,21 @@ class AddAddress {
             message: "删除地址成功",
             result: res,
         };
+    }
+
+    async setDefaultAddr(ctx) {
+        const addr_id = ctx.request.params.id;
+        const user_id = ctx.state.user.id;
+        const res = await setAddrService(addr_id, user_id);
+        if (res) {
+            ctx.body = {
+                code: 0,
+                message: "设置默认地址成功",
+                result: res,
+            };
+        } else {
+            ctx.app.emit("error", setAddrError, ctx);
+        }
     }
 }
 
