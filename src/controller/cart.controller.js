@@ -3,6 +3,8 @@ const {
     findCarts,
     updateCartService,
     removeCartService,
+    selectAllCarts,
+    unSelectAllCarts,
 } = require("@/service/cart.service");
 
 const {
@@ -72,6 +74,26 @@ class CartController {
         } else {
             return ctx.app.emit("error", deleteCartError, ctx);
         }
+    }
+
+    async selectAll(ctx) {
+        const user_id = ctx.state.user.id;
+        const res = await selectAllCarts(user_id);
+        ctx.body = {
+            code: 0,
+            message: "全部选中",
+            result: res,
+        };
+    }
+
+    async unSelectAll(ctx) {
+        const user_id = ctx.state.user.id;
+        const res = await unSelectAllCarts(user_id);
+        ctx.body = {
+            code: 0,
+            message: "全部取消选中",
+            result: res,
+        };
     }
 }
 

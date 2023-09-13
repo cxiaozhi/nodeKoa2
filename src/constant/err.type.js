@@ -109,4 +109,9 @@ module.exports = {
         message: "删除购物车失败",
         result: "",
     },
+    addrFormatError: {
+        code: "10401",
+        message: "添加地址数据格式错误",
+        result: "",
+    },
 };

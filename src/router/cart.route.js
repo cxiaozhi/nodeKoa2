@@ -7,6 +7,8 @@ const {
     getCart,
     updateCart,
     removeCart,
+    selectAll,
+    unSelectAll,
 } = require("@/controller/cart.controller");
 
 const router = new Router({prefix: "/carts"});
@@ -36,4 +38,9 @@ router.patch(
 
 // 删除购物车
 router.delete("/", auth, validator({ids: "array"}), removeCart);
+
+// 全选/全不选
+router.post("/selectAll", auth, selectAll);
+router.post("/unSelectAll", auth, unSelectAll);
+
 module.exports = router;
