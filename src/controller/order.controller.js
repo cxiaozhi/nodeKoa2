@@ -1,6 +1,7 @@
 const {
     createOrderService,
     findAllOrderService,
+    patchOrderService,
 } = require("@/service/order.service");
 const {addOrderError, getOrderError} = require("@/constant/err.type");
 
@@ -35,6 +36,17 @@ class OrderController {
         } else {
             ctx.app.emit("error", getOrderError, ctx);
         }
+    }
+
+    async updateOrder(ctx) {
+        const id = ctx.request.params.id;
+        const {state} = ctx.request.body;
+        const res = await patchOrderService(id, state);
+        ctx.body = {
+            code: 0,
+            message: "更新订单状态成功",
+            result: res,
+        };
     }
 }
 

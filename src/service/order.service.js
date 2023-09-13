@@ -32,6 +32,10 @@ class OrderService {
             return false;
         }
     }
+
+    async patchOrderService(id, state) {
+        return await Order.update({state}, {where: {id}});
+    }
 }
 
 module.exports = new OrderService();
